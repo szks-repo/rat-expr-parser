@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math/big"
+	"slices"
 	"strings"
 	"unicode"
 )
@@ -27,7 +28,7 @@ func NewRatFromFormula(f Formula) (*big.Rat, error) {
 		return nil, err
 	}
 
-	if strings.TrimSpace(f.Denom) == "" {
+	if slices.Contains([]string{"", "1"}, strings.TrimSpace(f.Denom)) {
 		return numRatExpr, nil
 	}
 
@@ -164,9 +165,9 @@ func (sc *Scanner) scan() Token {
 	case ')':
 		return Token{Typ: RPAREN, Value: valStr}
 	case '+':
-		return Token{Typ: ADD, Value: valStr} // BUG FIX: RPAREN -> ADD
+		return Token{Typ: ADD, Value: valStr}
 	case '-':
-		return Token{Typ: SUB, Value: valStr} // BUG FIX: RPAREN -> SUB
+		return Token{Typ: SUB, Value: valStr}
 	case '*':
 		return Token{Typ: MUL, Value: valStr}
 	case '/':

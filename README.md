@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-    rt, err := NewRatFromFormula(Formula{Nom:"0.01 * 100"})
+    rt, err := NewRatFromFormula(Formula{Num:"0.01 * 100"})
     if err != nil {
         panic(err)
     }
