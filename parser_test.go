@@ -85,7 +85,7 @@ func TestRatFromFormula(t *testing.T) {
 			},
 		},
 		{
-			formula: Formula{Num: "0.01*100"},
+			formula: Formula{Num: "0.01 * 100"},
 			wantErr: false,
 			wantRatStringFactory: func() string {
 				return "1"
@@ -159,7 +159,7 @@ func TestRatFromFormula(t *testing.T) {
 		},
 	} {
 		t.Run(fmt.Sprintf("%d[%s]", i+1, tt.formula.String()), func(t *testing.T) {
-			got, err := RatFromFormula(tt.formula)
+			got, err := NewRatFromFormula(tt.formula)
 			if err != nil {
 				if !tt.wantErr {
 					t.Errorf("RatFromFormula() error = %v, wantErr %v", err, tt.wantErr)
