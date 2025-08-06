@@ -9,16 +9,16 @@ import (
 	"unicode"
 )
 
-type Formula struct {
+type Expr struct {
 	Num   string
 	Denom string
 }
 
-func (f Formula) String() string {
-	return fmt.Sprintf("Formula(Num: %q, Denum: %q)", f.Num, f.Denom)
+func (f Expr) String() string {
+	return fmt.Sprintf("Expr(Num: %q, Denum: %q)", f.Num, f.Denom)
 }
 
-func NewRatFromFormula(f Formula) (*big.Rat, error) {
+func NewRatFromExpr(f Expr) (*big.Rat, error) {
 	if strings.TrimSpace(f.Num) == "" {
 		return nil, errors.New("numerator is empty")
 	}
