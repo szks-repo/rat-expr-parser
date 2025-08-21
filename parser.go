@@ -18,6 +18,10 @@ func (f Expr) String() string {
 	return fmt.Sprintf("Expr(Num: %q, Denum: %q)", f.Num, f.Denom)
 }
 
+func NewFromString(s string) (*big.Rat, error) {
+	return NewRatFromExpr(Expr{Num: s})
+}
+
 func NewRatFromExpr(f Expr) (*big.Rat, error) {
 	if strings.TrimSpace(f.Num) == "" {
 		return nil, errors.New("numerator is empty")
