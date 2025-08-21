@@ -18,7 +18,7 @@ func (f Expr) String() string {
 	return fmt.Sprintf("Expr(Num: %q, Denum: %q)", f.Num, f.Denom)
 }
 
-func NewFromString(s string) (*big.Rat, error) {
+func NewRatFromString(s string) (*big.Rat, error) {
 	return NewRatFromExpr(Expr{Num: s})
 }
 
