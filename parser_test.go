@@ -157,6 +157,21 @@ func TestRatFromExpr(t *testing.T) {
 				return "1/4"
 			},
 		},
+		{
+			expr:                 Expr{Num: "100 * 3 / 0"},
+			wantErr:              true,
+			wantRatStringFactory: nil,
+		},
+		{
+			expr:                 Expr{Num: "100 * 3", Denom: "0"},
+			wantErr:              true,
+			wantRatStringFactory: nil,
+		},
+		{
+			expr:                 Expr{Num: "3 * 3 + e"},
+			wantErr:              true,
+			wantRatStringFactory: nil,
+		},
 	} {
 		t.Run(fmt.Sprintf("%d[%s]", i+1, tt.expr.String()), func(t *testing.T) {
 			got, err := NewRatFromExpr(tt.expr)
